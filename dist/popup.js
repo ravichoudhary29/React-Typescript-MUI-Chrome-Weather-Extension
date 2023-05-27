@@ -21,7 +21,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n    background-color: #ff5959;\n    width: 360px;\n    height: 512px;\n    font-family: 'Roboto';\n}\n", "",{"version":3,"sources":["webpack://./src/popup/popup.css"],"names":[],"mappings":"AAAA;IACI,yBAAyB;IACzB,YAAY;IACZ,aAAa;IACb,qBAAqB;AACzB","sourcesContent":["body {\n    background-color: #ff5959;\n    width: 360px;\n    height: 512px;\n    font-family: 'Roboto';\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n    background-color: #f8bebe;\n    width: 360px;\n    height: 512px;\n    font-family: 'Roboto';\n}\n", "",{"version":3,"sources":["webpack://./src/popup/popup.css"],"names":[],"mappings":"AAAA;IACI,yBAAyB;IACzB,YAAY;IACZ,aAAa;IACb,qBAAqB;AACzB","sourcesContent":["body {\n    background-color: #f8bebe;\n    width: 360px;\n    height: 512px;\n    font-family: 'Roboto';\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -71,41 +71,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Card/Card.js");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/CardContent/CardContent.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/CardActions/CardActions.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
 /* harmony import */ var _utils_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/api */ "./src/utils/api.ts");
 
 
 
-const WeatherCardContainer = ({ children }) => {
+const WeatherCardContainer = ({ children, onDelete }) => {
     return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["default"], { mx: '4px', my: '16px' },
         react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null,
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["default"], null,
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["default"], null, children)))));
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["default"], null, children),
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["default"], null, onDelete && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["default"], { color: "secondary", onClick: onDelete }, "Delete")))))));
 };
-const WeatherCard = ({ city }) => {
+const WeatherCard = ({ city, onDelete }) => {
     const [weatherData, setWeatherData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
     const [cardState, setCardState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('loading');
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
         (0,_utils_api__WEBPACK_IMPORTED_MODULE_1__.fetchOpenWeatherData)(city)
             .then((data) => {
-            console.log(data);
+            // console.log(data)
             setWeatherData(data);
             setCardState('ready');
         })
             .catch((data) => setCardState('error'));
     }, [city]);
     if (cardState == 'loading' || cardState == 'error') {
-        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(WeatherCardContainer, null,
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["default"], { variant: "body1" }, cardState == 'loading'
+        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(WeatherCardContainer, { onDelete: onDelete },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__["default"], { variant: "body1" }, cardState == 'loading'
                 ? 'Loading...'
                 : 'Error:could not retrive weather data for this city.')));
     }
-    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(WeatherCardContainer, null,
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["default"], { variant: "h5" }, weatherData.name),
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["default"], { variant: "body1" },
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(WeatherCardContainer, { onDelete: onDelete },
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__["default"], { variant: "h5" }, weatherData.name),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__["default"], { variant: "body1" },
             Math.round(weatherData.main.temp),
             "*C"),
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["default"], { variant: "body1" },
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__["default"], { variant: "body1" },
             "Feels like:",
             Math.round(weatherData.main.feels_like),
             "*C")));
@@ -164,16 +167,27 @@ const App = () => {
         'Error',
     ]);
     const [cityInput, setCityInput] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-    console.log(cityInput);
+    const handleCityButtonClick = () => {
+        if (cityInput === '') {
+            return;
+        }
+        setCities([...cities, cityInput]);
+        setCityInput('');
+    };
+    const handleCityDeleteButtonClick = (index) => {
+        cities.splice(index, 1);
+        setCities([...cities]);
+    };
     return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["default"], { mx: "8px", my: "16px" },
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["default"], { container: true },
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["default"], { item: true },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__["default"], null,
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["default"], { px: "15px", py: "5px" },
                         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__["default"], { placeholder: "Add a city name.", value: cityInput, onChange: (e) => setCityInput(e.target.value) }),
-                        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["default"], null,
+                        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["default"], { onClick: handleCityButtonClick },
                             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_icons__WEBPACK_IMPORTED_MODULE_10__["default"], null)))))),
-        cities.map((city, index) => (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_WeatherCard__WEBPACK_IMPORTED_MODULE_4__["default"], { city: city, key: index })))));
+        cities.map((city, index) => (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_WeatherCard__WEBPACK_IMPORTED_MODULE_4__["default"], { city: city, key: index, onDelete: () => handleCityDeleteButtonClick(index) }))),
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["default"], { height: "16px" })));
 };
 const root = document.createElement('div');
 document.body.appendChild(root);
@@ -416,7 +430,7 @@ function fetchOpenWeatherData(city) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_css-loader_dist_runtime_api_js-node_modules_css-loader_dist_runtime_cssW-1b44d9","vendors-node_modules_material-ui_core_esm_Box_Box_js-node_modules_material-ui_core_esm_Card_C-e1762c"], () => (__webpack_require__("./src/popup/popup.tsx")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_css-loader_dist_runtime_api_js-node_modules_css-loader_dist_runtime_cssW-1b44d9","vendors-node_modules_material-ui_core_esm_Box_Box_js-node_modules_material-ui_core_esm_Button-f71eed"], () => (__webpack_require__("./src/popup/popup.tsx")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

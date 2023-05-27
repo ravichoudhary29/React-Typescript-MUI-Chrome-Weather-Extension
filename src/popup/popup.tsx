@@ -15,7 +15,18 @@ const App: React.FC<{}> = () => {
 
     const [cityInput, setCityInput] = useState<string>('')
 
-    console.log(cityInput)
+    const handleCityButtonClick = () => {
+        if (cityInput === '') {
+            return
+        }
+        setCities([...cities, cityInput])
+        setCityInput('')
+    }
+
+    const handleCityDeleteButtonClick = (index: number) => {
+        cities.splice(index, 1)
+        setCities([...cities])
+    }
 
     return (
         <Box mx="8px" my="16px">
@@ -29,7 +40,7 @@ const App: React.FC<{}> = () => {
                                 onChange={(e) => setCityInput(e.target.value)}
                             />
 
-                            <IconButton>
+                            <IconButton onClick={handleCityButtonClick}>
                                 <AddIcon />
                             </IconButton>
                         </Box>
@@ -38,8 +49,13 @@ const App: React.FC<{}> = () => {
             </Grid>
 
             {cities.map((city, index) => (
-                <WeatherCard city={city} key={index} />
+                <WeatherCard
+                    city={city}
+                    key={index}
+                    onDelete={() => handleCityDeleteButtonClick(index)}
+                />
             ))}
+            <Box height="16px" />
         </Box>
     )
 }
