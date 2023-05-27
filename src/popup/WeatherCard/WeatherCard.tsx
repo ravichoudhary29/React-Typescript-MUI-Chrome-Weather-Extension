@@ -65,11 +65,11 @@ const WeatherCard: React.FC<{
         <WeatherCardContainer onDelete={onDelete}>
             <Typography variant="h5">{weatherData.name}</Typography>
             <Typography variant="body1">
-                {Math.round(weatherData.main.temp)}*C
+                {Math.round(weatherData.main.temp)}
             </Typography>
             <Typography variant="body1">
                 Feels like:
-                {Math.round(weatherData.main.feels_like)}*C
+                {Math.round(weatherData.main.feels_like)}
             </Typography>
         </WeatherCardContainer>
     )
