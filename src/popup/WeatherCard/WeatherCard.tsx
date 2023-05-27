@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Card, CardContent, Typography } from '@material-ui/core'
+import {
+    Box,
+    Card,
+    CardContent,
+    CardMedia,
+    Typography,
+} from '@material-ui/core'
 import { OpenWeatherData, fetchOpenWeatherData } from '../../utils/api'
 
 const WeatherCardContainer: React.FC<{
