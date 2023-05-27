@@ -21,7 +21,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background-color: #1c1c1c;\n}\n", "",{"version":3,"sources":["webpack://./src/popup/popup.css"],"names":[],"mappings":"AAAA;EACE,yBAAyB;AAC3B","sourcesContent":["body {\n  background-color: #1c1c1c;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n    background-color: #f5f5f5;\n    width: 320px;\n    height: 512px;\n}\n", "",{"version":3,"sources":["webpack://./src/popup/popup.css"],"names":[],"mappings":"AAAA;IACI,yBAAyB;IACzB,YAAY;IACZ,aAAa;AACjB","sourcesContent":["body {\n    background-color: #f5f5f5;\n    width: 320px;\n    height: 512px;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -57,6 +57,52 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./src/popup/WeatherCard/WeatherCard.tsx":
+/*!***********************************************!*\
+  !*** ./src/popup/WeatherCard/WeatherCard.tsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _utils_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/api */ "./src/utils/api.ts");
+
+
+const WeatherCard = ({ city }) => {
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        (0,_utils_api__WEBPACK_IMPORTED_MODULE_1__.fetchOpenWeatherData)(city)
+            .then((data) => {
+            console.log(data);
+        })
+            .catch((data) => console.log(data));
+    }, [city]);
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, city);
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WeatherCard);
+
+
+/***/ }),
+
+/***/ "./src/popup/WeatherCard/index.tsx":
+/*!*****************************************!*\
+  !*** ./src/popup/WeatherCard/index.tsx ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _WeatherCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WeatherCard */ "./src/popup/WeatherCard/WeatherCard.tsx");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_WeatherCard__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+/***/ }),
+
 /***/ "./src/popup/popup.tsx":
 /*!*****************************!*\
   !*** ./src/popup/popup.tsx ***!
@@ -67,22 +113,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _popup_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./popup.css */ "./src/popup/popup.css");
-/* harmony import */ var _utils_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/api */ "./src/utils/api.ts");
+/* harmony import */ var _WeatherCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./WeatherCard */ "./src/popup/WeatherCard/index.tsx");
 
 
 
 
 const App = () => {
-    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-        (0,_utils_api__WEBPACK_IMPORTED_MODULE_3__.fetchOpenWeatherData)('Ranchi')
-            .then((data) => {
-            console.log(data);
-            console.log(data.main.temp);
-        })
-            .catch((data) => console.log(data));
-    }, []);
     return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null,
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", { src: "icon.png" })));
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_WeatherCard__WEBPACK_IMPORTED_MODULE_3__["default"], { city: "Toronto" })));
 };
 const root = document.createElement('div');
 document.body.appendChild(root);
