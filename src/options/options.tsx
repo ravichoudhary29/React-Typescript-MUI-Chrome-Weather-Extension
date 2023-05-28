@@ -83,7 +83,7 @@ const App: React.FC<{}> = () => {
                         </Grid>
                         <Grid item>
                             <Typography variant="body1">
-                                Auto toggle overlay on webpage load
+                                Auto toggle overlay on webpage reload
                             </Typography>
                             <Switch
                                 color="primary"
