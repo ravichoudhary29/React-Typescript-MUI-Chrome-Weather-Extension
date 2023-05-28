@@ -4,6 +4,7 @@ import {
     Button,
     Box,
     Card,
+    Switch,
     CardContent,
     Grid,
     TextField,
@@ -31,6 +32,13 @@ const App: React.FC<{}> = () => {
         setOptions({
             ...options,
             homeCity,
+        })
+    }
+
+    const handleAutoOverlayChange = (hasAutoOverlay: boolean) => {
+        setOptions({
+            ...options,
+            hasAutoOverlay,
         })
     }
 
@@ -69,6 +77,19 @@ const App: React.FC<{}> = () => {
                                 value={options.homeCity}
                                 onChange={(e) =>
                                     handleHomeCityChange(e.target.value)
+                                }
+                                disabled={isFieldDisabled}
+                            />
+                        </Grid>
+                        <Grid item>
+                            <Typography variant="body1">
+                                Auto toggle overlay on webpage load
+                            </Typography>
+                            <Switch
+                                color="primary"
+                                checked={options.hasAutoOverlay}
+                                onChange={(event, checked) =>
+                                    handleAutoOverlayChange(checked)
                                 }
                                 disabled={isFieldDisabled}
                             />

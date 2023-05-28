@@ -124,6 +124,7 @@ __webpack_require__.r(__webpack_exports__);
 chrome.runtime.onInstalled.addListener(() => {
     (0,_utils_storage__WEBPACK_IMPORTED_MODULE_0__.setStoredCities)([]);
     (0,_utils_storage__WEBPACK_IMPORTED_MODULE_0__.setStoredOptions)({
+        hasAutoOverlay: false,
         homeCity: '',
         tempScale: 'metric',
     });
