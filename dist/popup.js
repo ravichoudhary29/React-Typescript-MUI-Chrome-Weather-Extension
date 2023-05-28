@@ -207,6 +207,7 @@ const App = () => {
                         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__["default"], { onClick: handleTempScaleButtonClick }, options.tempScale === 'metric'
                             ? '\u2103'
                             : '\u2109'))))),
+        options.homeCity != '' && (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_WeatherCard__WEBPACK_IMPORTED_MODULE_4__["default"], { city: options.homeCity, tempScale: options.tempScale })),
         cities.map((city, index) => (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_WeatherCard__WEBPACK_IMPORTED_MODULE_4__["default"], { tempScale: options.tempScale, city: city, key: index, onDelete: () => handleCityDeleteButtonClick(index) }))),
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["default"], { height: "16px" })));
 };
@@ -505,7 +506,7 @@ function getStoredOptions() {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_css-loader_dist_runtime_api_js-node_modules_css-loader_dist_runtime_cssW-1b44d9","vendors-node_modules_material-ui_core_esm_Box_Box_js-node_modules_material-ui_core_esm_Button-f71eed"], () => (__webpack_require__("./src/popup/popup.tsx")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_material-ui_core_esm_Box_Box_js-node_modules_material-ui_core_esm_Card_C-eb01ac","vendors-node_modules_material-ui_core_esm_Button_Button_js-node_modules_material-ui_core_esm_-d5fd7c"], () => (__webpack_require__("./src/popup/popup.tsx")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
