@@ -10,7 +10,8 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   fetchOpenWeatherData: () => (/* binding */ fetchOpenWeatherData)
+/* harmony export */   fetchOpenWeatherData: () => (/* binding */ fetchOpenWeatherData),
+/* harmony export */   getWeatherIconSrc: () => (/* binding */ getWeatherIconSrc)
 /* harmony export */ });
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -21,16 +22,20 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const OPEN_WEATHER_API_KEY = 'e61615c8f9ba35649a86288386a55eb3';
+const OPEN_WEATHER_API_KEY = 'b981a80019daf5ce45973a0d3a829232';
 function fetchOpenWeatherData(city, tempScale) {
     return __awaiter(this, void 0, void 0, function* () {
         const res = yield fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${tempScale}&appid=${OPEN_WEATHER_API_KEY}`);
+        debugger;
         if (!res.ok) {
-            throw new Error('City not found.');
+            throw new Error('City not found');
         }
         const data = yield res.json();
         return data;
     });
+}
+function getWeatherIconSrc(iconCode) {
+    return `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 }
 
 
@@ -170,7 +175,7 @@ chrome.runtime.onInstalled.addListener(() => {
         id: 'weatherExtension',
     });
     chrome.alarms.create({
-        periodInMinutes: 60,
+        periodInMinutes: 600,
     });
 });
 chrome.contextMenus.onClicked.addListener((event) => {
@@ -183,12 +188,16 @@ chrome.alarms.onAlarm.addListener(() => {
         if (options.homeCity === '') {
             return;
         }
-        (0,_utils_api__WEBPACK_IMPORTED_MODULE_1__.fetchOpenWeatherData)(options.homeCity, options.tempScale).then((data) => {
+        (0,_utils_api__WEBPACK_IMPORTED_MODULE_1__.fetchOpenWeatherData)(options.homeCity, options.tempScale)
+            .then((data) => {
             const temp = Math.round(data.main.temp);
             const symbol = options.tempScale === 'metric' ? '\u2103' : '\u2109';
             chrome.action.setBadgeText({
                 text: `${temp}${symbol}`,
             });
+        })
+            .catch((error) => {
+            console.error(error);
         });
     });
 });

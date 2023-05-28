@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
-import WeatherCard from '../components/WeatherCard'
 import { Card } from '@material-ui/core'
+import WeatherCard from '../components/WeatherCard'
 import { getStoredOptions, LocalStorageOptions } from '../utils/storage'
 import { Messages } from '../utils/messages'
 import './contentScript.css'
@@ -17,17 +17,24 @@ const App: React.FC<{}> = () => {
         })
     }, [])
 
+    const handleMessages = (msg: Messages) => {
+        if (msg === Messages.TOGGLE_OVERLAY) {
+            setIsActive(!isActive)
+        }
+    }
+
     useEffect(() => {
-        chrome.runtime.onMessage.addListener((msg) => {
-            if (msg === Messages.TOGGLE_OVERLAY) {
-                setIsActive(!isActive)
-            }
-        })
+        chrome.runtime.onMessage.addListener(handleMessages)
+        return () => {
+            // clean up event listener, bug fix from: https://www.udemy.com/course/chrome-extension/learn/#questions/14694484/
+            chrome.runtime.onMessage.removeListener(handleMessages)
+        }
     }, [isActive])
 
     if (!options) {
         return null
     }
+
     return (
         <>
             {isActive && (

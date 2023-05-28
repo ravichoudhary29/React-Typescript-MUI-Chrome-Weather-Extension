@@ -1,4 +1,4 @@
-const OPEN_WEATHER_API_KEY = 'e61615c8f9ba35649a86288386a55eb3'
+const OPEN_WEATHER_API_KEY = 'b981a80019daf5ce45973a0d3a829232'
 
 export interface OpenWeatherData {
     name: string
@@ -31,10 +31,17 @@ export async function fetchOpenWeatherData(
     const res = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${tempScale}&appid=${OPEN_WEATHER_API_KEY}`
     )
+
+    debugger
+
     if (!res.ok) {
-        throw new Error('City not found.')
+        throw new Error('City not found')
     }
 
     const data: OpenWeatherData = await res.json()
     return data
+}
+
+export function getWeatherIconSrc(iconCode: string) {
+    return `https://openweathermap.org/img/wn/${iconCode}@2x.png`
 }

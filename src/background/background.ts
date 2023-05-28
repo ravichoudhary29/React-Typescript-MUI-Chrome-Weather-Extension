@@ -22,7 +22,7 @@ chrome.runtime.onInstalled.addListener(() => {
     })
 
     chrome.alarms.create({
-        periodInMinutes: 60,
+        periodInMinutes: 600,
     })
 })
 
@@ -37,15 +37,17 @@ chrome.alarms.onAlarm.addListener(() => {
         if (options.homeCity === '') {
             return
         }
-        fetchOpenWeatherData(options.homeCity, options.tempScale).then(
-            (data) => {
+        fetchOpenWeatherData(options.homeCity, options.tempScale)
+            .then((data) => {
                 const temp = Math.round(data.main.temp)
                 const symbol =
                     options.tempScale === 'metric' ? '\u2103' : '\u2109'
                 chrome.action.setBadgeText({
                     text: `${temp}${symbol}`,
                 })
-            }
-        )
+            })
+            .catch((error) => {
+                console.error(error)
+            })
     })
 })
