@@ -22,7 +22,7 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const OPEN_WEATHER_API_KEY = 'b981a80019daf5ce45973a0d3a829232';
+const OPEN_WEATHER_API_KEY = 'caa3752ee9f19f669cece359a442c37e';
 function fetchOpenWeatherData(city, tempScale) {
     return __awaiter(this, void 0, void 0, function* () {
         const res = yield fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${tempScale}&appid=${OPEN_WEATHER_API_KEY}`);
@@ -175,7 +175,7 @@ chrome.runtime.onInstalled.addListener(() => {
         id: 'weatherExtension',
     });
     chrome.alarms.create({
-        periodInMinutes: 600,
+        periodInMinutes: 60000,
     });
 });
 chrome.contextMenus.onClicked.addListener((event) => {

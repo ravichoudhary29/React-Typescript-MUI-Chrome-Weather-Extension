@@ -22,7 +22,7 @@ chrome.runtime.onInstalled.addListener(() => {
     })
 
     chrome.alarms.create({
-        periodInMinutes: 600,
+        periodInMinutes: 60000,
     })
 })
 
