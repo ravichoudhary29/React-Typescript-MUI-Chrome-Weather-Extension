@@ -175,7 +175,7 @@ chrome.runtime.onInstalled.addListener(() => {
         id: 'weatherExtension',
     });
     chrome.alarms.create({
-        periodInMinutes: 60000,
+        periodInMinutes: 10,
     });
 });
 chrome.contextMenus.onClicked.addListener((event) => {

@@ -26,7 +26,6 @@ const App: React.FC<{}> = () => {
     useEffect(() => {
         chrome.runtime.onMessage.addListener(handleMessages)
         return () => {
-            // clean up event listener, bug fix from: https://www.udemy.com/course/chrome-extension/learn/#questions/14694484/
             chrome.runtime.onMessage.removeListener(handleMessages)
         }
     }, [isActive])

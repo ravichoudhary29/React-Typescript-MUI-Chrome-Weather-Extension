@@ -43991,7 +43991,6 @@ const App = () => {
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
         chrome.runtime.onMessage.addListener(handleMessages);
         return () => {
-            // clean up event listener, bug fix from: https://www.udemy.com/course/chrome-extension/learn/#questions/14694484/
             chrome.runtime.onMessage.removeListener(handleMessages);
         };
     }, [isActive]);
